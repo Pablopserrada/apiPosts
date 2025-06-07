@@ -1,5 +1,7 @@
 const router = require('express').Router();
 
-// Define your routes here
+const postController = require('../../controllers/posts.controller');
+
+router.get('/', postController.getAll);
 
 module.exports = router;
