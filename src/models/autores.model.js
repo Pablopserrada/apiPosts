@@ -5,6 +5,12 @@ const selectAll = async () => {
     return result;
 }
 
+const selectById = async (autorId) => {
+    const [result] = await db.query('SELECT * FROM autores WHERE idautores = ?', [autorId]);
+    if (result.length === 0) return null;
+    return result[0];
+}
+
 module.exports = {
-    selectAll
+    selectAll, selectById
 }

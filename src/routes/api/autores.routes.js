@@ -1,7 +1,9 @@
 const router = require('express').Router();
 
-const autoresController = require('../../controllers/autores.controller');
 
-router.get('/', autoresController.getAll);
+const { getAll, getById } = require('../../controllers/autores.controller')
+
+router.get('/', getAll);
+router.get('/:autorId', getById)
 
 module.exports = router;
