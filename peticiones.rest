@@ -3,5 +3,4 @@
 GET {{host}}/api/autores
 
 ###
-
 GET {{host}}/api/posts
