@@ -1,6 +1,6 @@
 @host = http://localhost:3000
 
-GET {{host}}/api/autores?page=2&limit=5
+GET {{host}}/api/autores
 
 ###
 GET {{host}}/api/autores/5
@@ -15,4 +15,22 @@ GET {{host}}/api/posts/3
 GET {{host}}/api/posts/autor/2
 
 ###
+POST {{host}}/api/autores
+Content-Type: application/json
+
+{
+    "nombre": "Pepe Rodríguez",
+    "email": "prueba@prueba.com",
+    "imagen":  "https://images.example.com/pepe.jpg"
+}
+
+###
 POST {{host}}/api/posts
+Content-Type: application/json
+
+{
+    "titulo": "Introducción a Node.js",
+    "descripcion": "Una guía básica para comenzar a trabajar con Node.js.",
+    "categoria": "Programación",
+    "idautor": 2
+}

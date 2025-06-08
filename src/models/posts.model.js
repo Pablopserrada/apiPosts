@@ -50,9 +50,15 @@ const selectByAutor = async (autorId) => {
         WHERE idautor = ? 
         `, [autorId])
     if (result.length === 0) return null;
-    return result
+    return result;
+}
+
+const insert = async ({ titulo, descripcion, categoria, idautor }) => {
+
+   const [result] = await db.query(`INSERT INTO posts ( titulo, descripcion, fecha_creacion, categoria, idautor) VALUES (?,?,?,?,?)`, [titulo, descripcion, new Date(), categoria, idautor]);
+   return result;
 }
 
 module.exports = {
-    selectAll, selectById, selectByAutor
+    selectAll, selectById, selectByAutor, insert
 }

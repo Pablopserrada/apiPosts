@@ -1,4 +1,5 @@
 const Posts = require('../models/posts.model')
+const Autores = require('../models/autores.model')
 
 const getAll = async (req, res) => {
     const posts = await Posts.selectAll();
@@ -15,7 +16,7 @@ const getById = async (req, res) => {
     res.json(post)
 }
 
-const getByAutor = async (req,res, next) => {
+const getByAutor = async (req,res) => {
     const { autorId } = req.params
     
     const posts = await Posts.selectByAutor(autorId);
@@ -29,4 +30,17 @@ const getByAutor = async (req,res, next) => {
     res.json(posts)
 }
 
-module.exports = { getAll, getById, getByAutor }
+const create = async (req, res) => {
+    const { idautor } = req.body
+
+    const autor = await Autores.selectById(idautor)
+    if (!autor) {
+        return res.status(400).json({ message: 'El id del autor no existe' });
+    }
+
+    const result = await Posts.insert(req.body);
+    const post = await Posts.selectById(result.insertId);
+    res.json(post);
+}
+
+module.exports = { getAll, getById, getByAutor, create }
