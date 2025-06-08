@@ -6,7 +6,9 @@ const selectAll = async () => {
 }
 
 const selectById = async (autorId) => {
-    const [result] = await db.query('SELECT * FROM autores WHERE idautores = ?', [autorId]);
+    const [result] = await db.query(`
+        SELECT * FROM autores 
+        WHERE idautores = ?`, [autorId]);
     if (result.length === 0) return null;
     return result[0];
 }
